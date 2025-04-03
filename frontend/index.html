@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <form id="loginForm">
+      <h1>Login</h1>
+
+      <input type="email" id="email" placeholder="Email" required />
+
+      <select id="role" required>
+        <option value="" disabled selected>Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="End User">End User</option>
+      </select>
+
+      <div id="passwordWrapper" style="display: none;">
+        <input type="password" id="password" placeholder="Password" />
+      </div>
+
+      <button type="submit">Login</button>
+
+      <div id="message" class="message"></div>
+
+      <p>Don’t have an account? <a href="register.html">Register here</a></p>
+    </form>
+  </div>
+
+  <script type="module" src="/src/login.js"></script>
+</body>
+</html>
