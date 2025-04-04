@@ -6,27 +6,28 @@
   <title>Register</title>
   <link rel="stylesheet" href="src/style.css" />
 </head>
-<body>
-  <div class="container">
-    <form id="registerForm">
-      <h1>Register</h1>
-      <input type="text" id="first_name" placeholder="First Name" required />
-      <input type="text" id="last_name" placeholder="Last Name" required />
-      <input type="email" id="email" placeholder="Email" required />
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+  <div class="bg-white p-10 rounded-lg shadow-lg w-full max-w-md text-center">
+    <h1 class="text-4xl font-bold mb-6">Register</h1>
+    <form id="registerForm" class="space-y-4">
+      <input id="first_name" type="text" placeholder="First Name" required class="w-full p-3 rounded border bg-blue-100" />
+      <input id="last_name" type="text" placeholder="Last Name" required class="w-full p-3 rounded border bg-blue-100" />
+      <input id="email" type="email" placeholder="Email" required class="w-full p-3 rounded border bg-blue-100" />
       <div id="passwordWrapper">
-        <input type="password" id="password" placeholder="Password" />
+        <input id="password" type="password" placeholder="Password" class="w-full p-3 rounded border bg-blue-100" />
       </div>
-      <select id="role" required>
-        <option value="">Select Role</option>
+      <select id="role" required class="w-full p-3 rounded border">
+        <option value="" disabled selected>Select role</option>
+        <option value="end user">End User</option>
         <option value="admin">Admin</option>
-        <option value="end_user">End User</option>
       </select>
-      <button type="submit">Register</button>
+      <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded w-full hover:bg-blue-700">Register</button>
     </form>
-
-    <p>Already have an account? <a href="index.html">Login here</a></p>
+    <div id="message" class="mt-4 text-red-600 font-medium"></div>
+    <p class="mt-4">
+      Have an account? <a href="index.html" class="text-purple-700 underline">Login here</a>
+    </p>
   </div>
-
-  <script src="src/register.js" type="module"></script>
+  <script type="module" src="src/register.js"></script>
 </body>
 </html>
