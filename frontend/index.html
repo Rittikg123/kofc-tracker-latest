@@ -1,3 +1,4 @@
+<!-- frontend/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,28 +6,29 @@
   <title>Login</title>
   <link rel="stylesheet" href="/src/style.css" />
 </head>
-<body>
-  <div class="form-container">
-    <form id="loginForm">
-      <h1>Login</h1>
-
-      <input type="email" id="email" placeholder="Email" required />
-
-      <select id="role" required>
-        <option value="" disabled selected>Select Role</option>
-        <option value="admin">Admin</option>
-        <option value="End User">End User</option>
-      </select>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+  <div class="bg-white p-10 rounded-lg shadow-lg w-full max-w-md text-center">
+    <h1 class="text-4xl font-bold mb-6">Login</h1>
+    <form id="loginForm" class="space-y-4">
+      <input type="email" id="email" placeholder="Email" required class="w-full p-3 rounded border bg-blue-100" />
 
       <div id="passwordWrapper" style="display: none;">
-        <input type="password" id="password" placeholder="Password" />
+        <input type="password" id="password" placeholder="Password" class="w-full p-3 rounded border bg-blue-100" />
       </div>
 
-      <button type="submit">Login</button>
+      <select id="role" required class="w-full p-3 rounded border">
+        <option value="" disabled selected>Select Role</option>
+        <option value="admin">Admin</option>
+        <option value="end user">End User</option>
+      </select>
 
-      <div id="message" class="message"></div>
+      <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded w-full hover:bg-blue-700">Login</button>
 
-      <p>Don’t have an account? <a href="register.html">Register here</a></p>
+      <div id="message" class="mt-4 text-red-600 font-medium"></div>
+
+      <p class="mt-4">
+        Don’t have an account? <a href="register.html" class="text-purple-700 underline">Register here</a>
+      </p>
     </form>
   </div>
 
