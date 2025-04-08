@@ -14,6 +14,8 @@ body {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  width: 100%;
+  max-width: 700px;
 }
 
 input, select, button {
@@ -31,8 +33,78 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
   background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* Admin dashboard-specific */
+.dashboard-header {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.options-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#contentArea {
+  margin-top: 25px;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.logout {
+  margin-top: 20px;
+}
+
+.logout a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.user-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f0f0f0;
+}
+/* Center-only layout (for login/register) */
+/* Center the screen without vertical scroll */
+body.center-screen {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  overflow: hidden; /* Prevent scroll bar */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }

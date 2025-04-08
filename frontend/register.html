@@ -1,27 +1,19 @@
+<!-- frontend/register.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register</title>
   <link rel="stylesheet" href="src/style.css" />
 </head>
-<body class="bg-gray-100 flex justify-center items-center h-screen">
-  <div class="bg-white p-10 rounded-lg shadow-lg w-full max-w-md text-center">
-    <h1 class="text-4xl font-bold mb-6">Register</h1>
+<body class="center-screen">
+  <div class="login-box">
+    <h1>Register</h1>
     <form id="registerForm" class="space-y-4">
-      <input id="first_name" type="text" placeholder="First Name" required class="w-full p-3 rounded border bg-blue-100" />
-      <input id="last_name" type="text" placeholder="Last Name" required class="w-full p-3 rounded border bg-blue-100" />
-      <input id="email" type="email" placeholder="Email" required class="w-full p-3 rounded border bg-blue-100" />
-      <div id="passwordWrapper">
-        <input id="password" type="password" placeholder="Password" class="w-full p-3 rounded border bg-blue-100" />
-      </div>
-      <select id="role" required class="w-full p-3 rounded border">
-        <option value="" disabled selected>Select role</option>
-        <option value="end user">End User</option>
-        <option value="admin">Admin</option>
-      </select>
-      <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded w-full hover:bg-blue-700">Register</button>
+      <input id="first_name" type="text" placeholder="First Name" required class="input" />
+      <input id="last_name" type="text" placeholder="Last Name" required class="input" />
+      <input id="email" type="email" placeholder="Email" required class="input" />
+      <button type="submit" class="btn-primary">Register</button>
     </form>
     <div id="message" class="mt-4 text-red-600 font-medium"></div>
     <p class="mt-4">

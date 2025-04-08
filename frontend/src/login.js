@@ -1,63 +1,61 @@
-// frontend/src/login.js
-
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("loginForm");
-  const roleSelect = document.getElementById("role");
+  const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
   const passwordWrapper = document.getElementById("passwordWrapper");
   const messageDiv = document.getElementById("message");
 
-  passwordWrapper.style.display = "none";
-
-  roleSelect.addEventListener("change", () => {
-    if (roleSelect.value === "admin") {
-      passwordWrapper.style.display = "block";
-      passwordInput.required = true;
-    } else {
-      passwordWrapper.style.display = "none";
-      passwordInput.required = false;
-    }
-  });
-
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-
-    const data = {
-      email: document.getElementById("email").value,
-      role: roleSelect.value,
-    };
-
-    if (roleSelect.value === "admin") {
-      data.password = passwordInput.value;
-    }
+    const email = emailInput.value;
 
     try {
-      const res = await fetch("http://localhost:5051/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
+      const checkRes = await fetch(`http://localhost:5051/api/check-user?email=${encodeURIComponent(email)}`);
+      const checkData = await checkRes.json();
 
-      const result = await res.json();
-
-      if (res.ok) {
-        messageDiv.style.color = "green";
-        messageDiv.textContent = "✅ Login successful!";
-        setTimeout(() => {
-          window.location.href = roleSelect.value === "admin"
-            ? "admin-dashboard.html"
-            : "user-dashboard.html";
-        }, 1500);
-      } else {
-        messageDiv.style.color = "red";
-        messageDiv.textContent = `❌ ${result.error || "Login failed"}`;
+      if (!checkData.exists) {
+        // Unknown user → redirect to register
+        window.location.href = `register.html?email=${encodeURIComponent(email)}`;
+        return;
       }
-    } catch (error) {
-      console.error(error);
-      messageDiv.style.color = "red";
-      messageDiv.textContent = "❌ Network error";
+
+      if (checkData.role === 'end_user') {
+        // Known end user → direct login
+        window.location.href = "user-dashboard.html";
+        return;
+      }
+
+      if (checkData.role === 'admin') {
+        // Admin → prompt for password if not already shown
+        if (passwordWrapper.style.display === 'none') {
+          passwordWrapper.style.display = 'block';
+          messageDiv.textContent = "🔐 Enter your admin password.";
+          return;
+        }
+
+        // Submit login for admin
+        const loginRes = await fetch("http://localhost:5051/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            password: passwordInput.value,
+            role: 'admin'
+          }),
+        });
+
+        const loginData = await loginRes.json();
+
+        if (loginRes.ok) {
+          messageDiv.textContent = "✅ Admin login successful!";
+          setTimeout(() => window.location.href = "admin-dashboard.html", 1500);
+        } else {
+          messageDiv.textContent = `❌ ${loginData.error || "Login failed"}`;
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      messageDiv.textContent = "❌ Server error. Try again later.";
     }
   });
 });

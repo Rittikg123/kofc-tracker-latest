@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 // ✅ Routes
-app.use(authRoutes);
+app.use('/api', authRoutes); // ✅ Ensures all routes are under /api
 
 // ✅ Test endpoint
 app.get('/api/test-db', async (req, res) => {
