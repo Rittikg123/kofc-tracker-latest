@@ -1,31 +1,20 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
 
 dotenv.config();
 
 const app = express();
-const PORT = 5051;
+const PORT = process.env.PORT || 5051;
 
-// ✅ Enable CORS
 app.use(cors());
-
-// ✅ Middleware
 app.use(express.json());
 
-// ✅ Routes
-app.use('/api', authRoutes); // ✅ Ensures all routes are under /api
+app.use('/api', authRoutes); // All routes use /api prefix
 
-// ✅ Test endpoint
-app.get('/api/test-db', async (req, res) => {
-  res.json({ now: new Date().toISOString() });
-});
-
-app.get('/', (req, res) => {
-  res.send('Backend is running');
-});
+app.get('/', (req, res) => res.send('Backend running'));
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server running on http://localhost:${PORT}`);
 });

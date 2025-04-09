@@ -1,3 +1,4 @@
+<!-- frontend/admin-dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,17 +6,15 @@
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="src/style.css" />
 </head>
-<body>
+<body class="center-screen">
   <div class="container">
     <h1 class="dashboard-header">Admin Dashboard</h1>
 
     <div class="options-menu">
-      <button id="viewUsersBtn">1. View Admin Users</button>
-      <button disabled>2. Add New Event (coming soon)</button>
-      <button disabled>3. Delete a User (coming soon)</button>
+      <button onclick="location.href='exemplification-event.html'">1. Exemplification Event</button>
+      <button onclick="location.href='cat-event.html'">2. CAT Event</button>
+      <button onclick="location.href='admin-menu.html'">3. Admin Menu</button>
     </div>
-
-    <div id="contentArea"></div>
 
     <div class="logout">
       <a href="index.html">Logout</a>

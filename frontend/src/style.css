@@ -91,8 +91,7 @@ button:disabled {
 .user-table th {
   background-color: #f0f0f0;
 }
-/* Center-only layout (for login/register) */
-/* Center the screen without vertical scroll */
+
 body.center-screen {
   margin: 0;
   height: 100vh;
@@ -107,4 +106,32 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* Style for admin dashboard menu buttons */
+.options-menu button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+}
+
+.options-menu button:hover {
+  background-color: #0056b3;
+}
+
+#contentArea {
+  margin-top: 25px;
+  text-align: left;
+  overflow-y: auto;
+  max-height: 400px; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  display: none; /* Initially hidden */
 }
