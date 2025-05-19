@@ -7,40 +7,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const email = emailInput.value;
+    const email = emailInput.value.trim();
 
     try {
       const checkRes = await fetch(`http://localhost:5051/api/check-user?email=${encodeURIComponent(email)}`);
       const checkData = await checkRes.json();
 
       if (!checkData.exists) {
-        // Unknown user → redirect to register
         window.location.href = `register.html?email=${encodeURIComponent(email)}`;
         return;
       }
 
       if (checkData.role === 'end_user') {
-        // Known end user → direct login
+        // End user login (no password)
         window.location.href = "user-dashboard.html";
         return;
       }
 
       if (checkData.role === 'admin') {
-        // Admin → prompt for password if not already shown
+        // Show password field if hidden
         if (passwordWrapper.style.display === 'none') {
           passwordWrapper.style.display = 'block';
           messageDiv.textContent = "🔐 Enter your admin password.";
           return;
         }
 
-        // Submit login for admin
         const loginRes = await fetch("http://localhost:5051/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email,
-            password: passwordInput.value,
-            role: 'admin'
+            password: passwordInput.value
           }),
         });
 

@@ -45,27 +45,37 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// 3. Admin Login
+// 3. Admin & End User Login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
+
   try {
-    const result = await pool.query('SELECT * FROM users WHERE email = $1 AND role = $2', [email, 'admin']);
-    if (result.rows.length === 0) return res.status(400).json({ error: 'Admin not found' });
+    const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (result.rows.length === 0) return res.status(400).json({ error: 'User not found' });
 
     const user = result.rows[0];
-    const valid = await bcrypt.compare(password, user.password);
-    if (!valid) return res.status(401).json({ error: 'Invalid password' });
 
-    return res.status(200).json({ message: 'Login successful', user });
+    if (user.role === 'admin') {
+      const valid = await bcrypt.compare(password, user.password);
+      if (!valid) return res.status(401).json({ error: 'Invalid password' });
+      return res.status(200).json({ message: 'Admin login successful', user });
+    }
+
+    if (user.role === 'end_user') {
+      // No password required
+      return res.status(200).json({ message: 'End user login successful', user });
+    }
+
+    return res.status(400).json({ error: 'Unknown user role' });
   } catch (err) {
     console.error('❌ Login Error:', err.message);
     return res.status(500).json({ error: 'Login failed' });
   }
 });
 
-// 🔁 ADMIN MENU ROUTES
+// ================== ADMIN MENU ROUTES ==================
 
-// Get all users (for admin menu)
+// Get all users
 router.get('/users', async (req, res) => {
   try {
     const result = await pool.query('SELECT id, first_name, last_name, email, role FROM users');
@@ -76,14 +86,18 @@ router.get('/users', async (req, res) => {
   }
 });
 
-// Promote end_user to admin WITH custom password
+// Promote end_user to admin with custom password
 router.put('/users/:id/promote', async (req, res) => {
   const userId = req.params.id;
   const { password } = req.body;
-
   if (!password) return res.status(400).json({ error: 'Password is required' });
 
   try {
+    const check = await pool.query('SELECT role FROM users WHERE id = $1', [userId]);
+    if (check.rows[0]?.role === 'admin') {
+      return res.status(400).json({ error: 'User is already an admin.' });
+    }
+
     const hashed = await bcrypt.hash(password, 10);
     await pool.query(
       'UPDATE users SET role = $1, password = $2 WHERE id = $3',

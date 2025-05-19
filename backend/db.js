@@ -14,4 +14,4 @@ const pool = new Pool({
   password: process.env.PG_PASSWORD,
 });
 
-export default pool; // <-- THIS LINE is what you're missing
+export default pool; 

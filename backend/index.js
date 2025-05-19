@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5051;
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', authRoutes); // All routes use /api prefix
+app.use('/api', authRoutes); 
 
 app.get('/', (req, res) => res.send('Backend running'));
 
