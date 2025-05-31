@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Council Activity Tracker</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="center-screen">
+  <div class="form-box">
+    <h1>Council Activity Tracker</h1>
+    <form id="activityForm" class="form-grid">
+
+      <label for="council">Council Number:</label>
+      <input type="number" id="council" name="council" class="input" placeholder="Enter a valid council number" required />
+
+      <label for="date">Exemplification Date:</label>
+      <div class="inline-group">
+        <input type="date" id="date" name="date" class="input" required/>
+        <label class="calendar-label">
+          <input type="checkbox" name="addToCalendar" />
+          Add to Diocese Calendar
+        </label>
+      </div>
+
+      <label for="time">Event Time:</label>
+      <input type="time" id="time" name="time" class="input" required />
+
+      <label for="activityName">Activity Name:</label>
+      <input type="text" id="activityName" name="activityName" class="input" required />
+
+      <label for="activityCategory">Category:</label>
+      <select id="activityCategory" name="activityCategory" class="input" required>
+        <option value="">Select Category</option>
+        <option>Faith</option>
+        <option>Family</option>
+        <option>Community</option>
+        <option>Life</option>
+        <option>Insurance</option>
+        <option>Membership</option>
+      </select>
+
+      <label for="activityDescription">Description:</label>
+      <textarea id="activityDescription" name="activityDescription" class="input" rows="3" placeholder="Brief description of the activity" required></textarea>
+
+      <label for="locationName">Location Name:</label>
+      <input type="text" id="locationName" name="locationName" class="input" placeholder="Enter location name" required />
+
+      <label for="locationAddress">Location Address:</label>
+      <input type="text" id="locationAddress" name="locationAddress" class="input" placeholder="Enter location address" required />
+
+      <label for="locationCity">Location City and Zip Code:</label>
+      <div class="inline-group">
+        <input type="text" id="locationCity" name="locationCity" class="input" placeholder="City" required/>
+        <input type="number" id="locationCity" name="locationCity" class="input" placeholder="Zip Code" required/>
+      </div>
+
+      <label for="coordinatorName">Contact Name:</label>
+      <input type="text" id="coordinatorName" name="coordinatorName" class="input" placeholder="Enter contact name" required />
+
+      <label for="coordinatorPhone">Contact Phone:</label>
+      <input type="tel" id="coordinatorPhone" name="coordinatorPhone" class="input" inputmode="numeric" maxlength="12" placeholder="e.g., 555-123-4567" pattern="^\d{3}[- ]?\d{3}[- ]?\d{4}$" required />
+
+      <label for="coordinatorEmail">Contact Email:</label>
+      <input type="email" id="coordinatorEmail" name="coordinatorEmail" class="input" placeholder="e.g., example@email.com" required />
+
+      <button type="submit" class="btn-primary">Save</button>
+      <button type="button" id="saveAddBtn" class="btn-secondary">Save & Add Another</button>
+    </form>
+  </div>
+
+  <script type="module" src="/src/activity-menu.js"></script>
+</body>
+</html>
