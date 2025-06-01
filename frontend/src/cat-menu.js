@@ -8,20 +8,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("welcomeMessage").textContent = "Welcome back!"
   }
 
+
   // Button logic
   document.getElementById("addBtn").addEventListener("click", () => {
-    window.location.href = "exemplification-form.html";
+    window.location.href = "cat-form.html";
   });
 
   document.getElementById("updateBtn").addEventListener("click", () => {
-    window.location.href = "update-exemplification.html";
+    window.location.href = "update-cat.html";
   });
 
   document.getElementById("reportBtn").addEventListener("click", () => {
-    window.location.href = "report-exemplification.html";
+    window.location.href = "report-cat.html";
   });
 
   document.getElementById("bulkBtn").addEventListener("click", () => {
-    window.location.href = "bulk-exemplifications.html";
+    window.location.href = "bulk-cat.html";
   });
 });

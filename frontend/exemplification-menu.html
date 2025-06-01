@@ -2,53 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Exemplification Tracker</title>
+  <title>Exemplification Menu</title>
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body class="center-screen">
-  <div class="form-box">
-    <h1>Exemplification Tracker</h1>
-    <form id="exemplificationForm" class="form-grid">
-      <label for="councilNumber">Council Number:</label>
-      <input type="number" id="councilNumber" name="councilNumber" class="input" placeholder="Enter a valid council number" required />
+  <div class="form-box text-center">
+    <h1>Exemplification Tracking System</h1>
+    <p id="welcomeMessage" class="mb-6 text-lg text-center font-medium">Welcome back, ...</p>
 
-      <label for="date">Exemplification Date:</label>
-      <div class="inline-group">
-        <input type="date" id="date" name="date" class="input" required/>
-        <label class="calendar-label">
-          <input type="checkbox" name="addToCalendar" />
-          Add to Diocese Calendar
-        </label>
-      </div>
-
-      <label for="time">Exemplification Time:</label>
-      <input type="time" id="time" name="time" class="input" required/>
-
-      <label for="locationName">Location Name:</label>
-      <input type="text" id="locationName" name="locationName" class="input" placeholder="Enter location name" required/>
-
-      <label for="locationAddress">Location Address:</label>
-      <input type="text" id="locationAddress" name="locationAddress" class="input" placeholder="Enter location address" required/>
-
-      <label for="locationCity">Location City and Zip Code:</label>
-      <div class="inline-group">
-        <input type="text" id="locationCity" name="locationCity" class="input" placeholder="City" required/>
-        <input type="number" id="locationCity" name="locationCity" class="input" placeholder="Zip Code" required/>
-      </div>
-
-      <label for="contactName">Contact Name:</label>
-      <input type="text" id="contactName" name="contactName" class="input" placeholder="Enter contact name" required/>
-
-      <label for="contactPhone">Contact Phone:</label>
-      <input type="tel" id="contactPhone" name="contactPhone" class="input" inputmode="numeric" maxlength="12" placeholder="e.g., 555-123-4567" pattern="^\d{3}[- ]?\d{3}[- ]?\d{4}$" required/>
-
-      <label for="contactEmail">Contact Email:</label>
-      <input type="email" id="contactEmail" name="contactEmail" class="input" placeholder="e.g., example@email.com" required/>
-
-      
-      <button type="submit" class="btn-primary">Save</button>
-      <button type="button" id="saveAddBtn" class="btn-secondary">Save & Add Another</button>
-    </form>
+    <div class="space-y-4">
+      <button class="btn-primary" id="addBtn">Add an Exemplification</button>
+      <button class="btn-primary" id="updateBtn">Update an Exemplification</button>
+      <button class="btn-primary" id="reportBtn">Report Exemplification Results</button>
+      <button class="btn-primary" id="bulkBtn">Bulk Exemplification Reports</button>
+    </div>
   </div>
 
   <script type="module" src="/src/exemplification-menu.js"></script>

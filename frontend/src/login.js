@@ -18,9 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      if (checkData.role === 'end_user') {
-        // End user login (no password)
-        window.location.href = "user-dashboard.html";
+     if (checkData.role === 'end_user') {
+        // Get full user record
+        const loginRes = await fetch("http://localhost:5051/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+
+        const loginData = await loginRes.json();
+
+        if (loginRes.ok) {
+          localStorage.setItem("currentUser", JSON.stringify(loginData.user));
+          window.location.href = "user-dashboard.html";
+        } else {
+          messageDiv.textContent = `❌ ${loginData.error || "Login failed"}`;
+        }
+
         return;
       }
 
@@ -44,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const loginData = await loginRes.json();
 
         if (loginRes.ok) {
+          localStorage.setItem("currentUser", JSON.stringify(loginData.user));
           messageDiv.textContent = "✅ Admin login successful!";
           setTimeout(() => window.location.href = "admin-dashboard.html", 1500);
         } else {

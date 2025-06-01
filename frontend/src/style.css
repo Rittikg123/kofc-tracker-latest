@@ -60,6 +60,15 @@ button:disabled {
   margin-top: 10px;
 }
 
+.top-right-email {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #333;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: 200px 1fr;
