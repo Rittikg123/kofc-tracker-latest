@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
+import exemplificationRouter from './routes/exemplification.js';
+import catRouter from './routes/cat.js';
 
 dotenv.config();
 
@@ -12,6 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api', authRoutes); 
+app.use('/api/exemplification', exemplificationRouter);
+app.use('/api/cat', catRouter);
 
 app.get('/', (req, res) => res.send('Backend running'));
 

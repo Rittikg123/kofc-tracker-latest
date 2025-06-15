@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('exemplificationForm');
+  const form = document.getElementById('catForm');
   const saveBtn = document.getElementById('saveBtn');
   const saveAddAnotherBtn = document.getElementById('saveAddBtn');
   const popup = document.getElementById('popupMessage');
@@ -40,8 +40,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Validate required fields
       const requiredFields = [
-        'council', 'event_date', 'event_time', 'location_name', 'location_address',
-        'location_city', 'location_zipcode', 'contact_name', 'contact_phone', 'contact_email'
+        'council', 'event_date', 'event_time', 'activity_name', 'category',
+        'description', 'location_name', 'location_address',
+        'location_city', 'location_zipcode', 'coordinator_name', 'coordinator_phone', 'coordinator_email'
       ];
       const missingFields = requiredFields.filter(field => !data[field]);
       if (missingFields.length > 0) {
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const user = JSON.parse(localStorage.getItem("currentUser"));
       data.reporting_user = user?.first_name || "";
 
-      const response = await fetch('http://localhost:5051/api/exemplification', {
+      const response = await fetch('http://localhost:5051/api/cat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -64,12 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error(responseData.details || 'Failed to save data');
       }
 
-      showPopup('Added exemplification event successfully!');
+      showPopup('Added cat event successfully!');
 
       if (stayOnPage) {
         // Only clear event_date and event_time, keep other fields
         form.querySelector('[name="event_date"]').value = '';
         form.querySelector('[name="event_time"]').value = '';
+        // Optionally, focus the date field for convenience
         form.querySelector('[name="event_date"]').focus();
       } else {
         form.reset();
